@@ -32,9 +32,12 @@ namespace ProEventos.API.Controllers
         }
 
         [HttpPost]
-        public string Post()
+        public void Post(string local, string data, string tema, int qnt, string lote)
         {
-            return "Exemplo de Post";
+            Evento novoEvento = new Evento { Local = local, DataEvento = data, Tema = tema, QntPessoas = qnt, Lote = lote };
+            _context.Eventos.Add(novoEvento);
+            _context.SaveChanges();
+
         }
         [HttpPut("{id}")]
         public string Put(int id)
